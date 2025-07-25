@@ -1,0 +1,95 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff6fb;
+  margin: 0;
+  padding: 0;
+}
+.logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: block;
+  margin: 10px auto;
+}
+.top-bar {
+  background-color: #ff99cc;
+  padding: 10px;
+  text-align: center;
+}
+
+.top-bar h1 {
+  color: white;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.block {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 260px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.block img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.block p {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.preco {
+  display: block;
+  font-size: 1rem;
+  color: #d63384;
+  margin-bottom: 10px;
+}
+
+.opcoes-cor {
+  margin-bottom: 10px;
+}
+
+.buy-button {
+  display: inline-block;
+  background-color: #ff69b4;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.buy-button:hover {
+  background-color: #e055a0;
+}
+
+.footer {
+  background-color: #ff99cc;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer a {
+  color: white;
+  text-decoration: underline;
+}
