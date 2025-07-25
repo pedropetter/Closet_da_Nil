@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <header class="top-bar">
+  <img src="closet.jpg" alt="Logo da Loja Rosê" class="logo">
+</header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja Rosê</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    let carrinho = [];
+
+
+    function adicionarAoCarrinho(nome) {
+      carrinho.push(nome);
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      const lista = document.getElementById("lista-carrinho");
+      lista.innerHTML = "";
+      carrinho.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        lista.appendChild(li);
+      });
+
+      const link = document.getElementById("finalizar-compra");
+      const texto = encodeURIComponent("Olá!Quero finalizar a compra dos seguintes Produtos: " + carrinho.join(", "));
+      link.href = "https://wa.me/5563992887772?text=" + texto;
+    }
+
+    function trocarImagemVestidoTania(cor) {
+      const imagem = document.getElementById("imagem-tania");
+      if (cor === 'preto') {
+        imagem.setAttribute('src', 'vestido-tania-preto.jpg');
+        imagem.setAttribute('alt', 'Vestido Tânia Preto');
+      } else if (cor === 'marrom') {
+        imagem.setAttribute('src', 'vestido-tania-marrom.jpg');
+        imagem.setAttribute('alt', 'Vestido Tânia Marrom');
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="top-bar">
+    <h1>Closet Da Nil💕 </h1>
+  </header>
+
+  <div class="section">
+    <h2>🛍️ Nossos Produtos✨</h2>
+    <div class="container">
+
+      <div class="block">
+        <img src="vestido pétala.jpg" alt="Vestido Pétala" class="block-image">
+        <p>Vestido Pétala</p>
+        <span class="preco">R$ 99,90</span>
+        <button onclick="adicionarAoCarrinho('Vestido Pétala')" class="buy-button">Adicionar ao carrinho</button><br>
+        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Pétala." target="_blank">Comprar</a>
+      </div>
+
+      <div class="block">
+        <img src="vestido afrodite.jpg" alt="Vestido Afrodite" class="block-image">
+        <p>Vestido Afrodite</p>
+        <span class="preco">R$ 109,90</span>
+        <button onclick="adicionarAoCarrinho('Vestido Afrodite')" class="buy-button">Adicionar ao carrinho</button><br>
+        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Afrodite." target="_blank">Comprar</a>
+      </div>
+
+      <div class="block">
+        <img src="vestido flor.jpg" alt="Vestido Flor" class="block-image">
+        <p>Vestido Flor</p>
+        <span class="preco">R$ 89,90</span>
+        <button onclick="adicionarAoCarrinho('Vestido Flor')" class="buy-button">Adicionar ao carrinho</button><br>
+        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Flor." target="_blank">Comprar</a>
+      </div>
+
+      <div class="block">
+        <img src="vestido-tania-preto.jpg" alt="Vestido Tânia Preto" id="imagem-tania" class="block-image">
+        <p>Vestido Tânia</p>
+        <span class="preco">R$ 129,90</span>
+        <div class="opcoes-cor">
+          <label><input type="radio" name="cor-tania" value="preto" checked onclick="trocarImagemVestidoTania('preto')"> Preto</label>
+          <label><input type="radio" name="cor-tania" value="marrom" onclick="trocarImagemVestidoTania('marrom')"> Marrom</label>
+        </div>
+        <button onclick="adicionarAoCarrinho('Vestido Tânia')" class="buy-button">Adicionar ao carrinho</button><br>
+        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Tânia. Qual cor está disponível?" target="_blank">Comprar</a>
+      </div>
+
+      <div class="block">
+        <img src="conjunto luma.jpg" alt="Conjunto Luma" class="block-image">
+        <p>Conjunto Luma</p>
+        <span class="preco">R$ 119,90</span>
+        <button onclick="adicionarAoCarrinho('Conjunto Luma')" class="buy-button">Adicionar ao carrinho</button><br>
+        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Conjunto Luma." target="_blank">Comprar</a>
+      </div>
+
+      <div class="block">
+        <img src="vestido vitrine.jpg" alt="Vestido Vitrine" class="block-image">
+        <p>Vestido Vitrine</p>
+        <span class="preco">R$ 99,90</span>
+        <button onclick="adicionarAoCarrinho('Vestido Vitrine')" class="buy-button">Adicionar ao carrinho</button><br>
+        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Vitrine." target="_blank">Comprar</a>
+      </div>
+
+      <div class="block">
+  <img src="conjunto love.jpg" alt="Conjunto Só Love" class="block-image">
+  <p>Conjunto Só Love</p>
+  <span class="preco">R$ 109,90</span>
+  <button onclick="adicionarAoCarrinho('Conjunto Só Love')" class="buy-button">Adicionar ao carrinho</button><br>
+  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Conjunto Só Love." target="_blank">Comprar</a>
+</div>
+
+<div class="block">
+  <img src="vestido doroty.jpg" alt="Vestido Doroty" class="block-image">
+  <p>Vestido Doroty</p>
+  <span class="preco">R$ 119,90</span>
+  <button onclick="adicionarAoCarrinho('Vestido Doroty')" class="buy-button">Adicionar ao carrinho</button><br>
+  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Doroty." target="_blank">Comprar</a>
+</div>
+
+<div class="block">
+  <img src="conjunto saron.jpg" alt="Conjunto Saron" class="block-image">
+  <p>Conjunto Saron</p>
+  <span class="preco">R$ 99,90</span>
+  <button onclick="adicionarAoCarrinho('Conjunto Saron')" class="buy-button">Adicionar ao carrinho</button><br>
+  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Conjunto Saron." target="_blank">Comprar</a>
+</div>
+
+<div class="block">
+  <img src="vestido india.jpg" alt="Vestido Índia" class="block-image">
+  <p>Vestido Índia</p>
+  <span class="preco">R$ 139,90</span>
+  <button onclick="adicionarAoCarrinho('Vestido Índia')" class="buy-button">Adicionar ao carrinho</button><br>
+  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Índia." target="_blank">Comprar</a>
+</div>
+
+<div class="block">
+  <img src="conjunto tip.jpg" alt="Conjunto Tip" class="block-image">
+  <p>Conjunto Tip</p>
+  <span class="preco">R$ 89,90</span>
+  <button onclick="adicionarAoCarrinho('Conjunto Tip')" class="buy-button">Adicionar ao carrinho</button><br>
+  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Conjunto Tip." target="_blank">Comprar</a>
+</div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🛒 Carrinho de Compras</h2>
+    <ul id="lista-carrinho" style="list-style: none; padding: 0; margin-bottom: 20px;"></ul>
+    <a id="finalizar-compra" class="buy-button" href="#" target="_blank">Finalizar Compra</a>
+  </div>
+
+  <footer class="footer">
+    <p>Entre em contato:</p>
+    <p>
+      📱 <a href="https://wa.me/5563992887772" target="_blank">WhatsApp</a> |
+      📸 <a href="https://instagram.com/_closetdanil/" target="_blank">Instagram</a>
+    </p>
+    <p>📍 Dianópolis - TO</p>
+    <p>&copy; 2025 Closet Da Nil✨</p>
+  </footer>
+</body>
+</html>
