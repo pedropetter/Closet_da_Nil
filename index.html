@@ -43,6 +43,10 @@
     overflow-x: hidden;
   }
 
+  body.is-loading {
+    overflow: hidden;
+  }
+
   body::before {
     content: "";
     position: fixed;
@@ -80,6 +84,149 @@
 
   button {
     font: inherit;
+  }
+
+  .fashion-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #120f0c;
+    color: #f7f1e8;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+
+  .fashion-intro.is-complete,
+  .fashion-intro.is-skipped {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .fashion-intro__curtain {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50.5%;
+    background:
+      linear-gradient(180deg, rgba(247, 241, 232, 0.06), transparent 18%),
+      linear-gradient(135deg, #17120e, #241a13 65%, #120f0c);
+    transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .fashion-intro__curtain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 34px
+    );
+    opacity: 0.18;
+  }
+
+  .fashion-intro__curtain--left { left: 0; }
+  .fashion-intro__curtain--right { right: 0; }
+
+  .fashion-intro__content {
+    position: relative;
+    z-index: 1;
+    width: min(92vw, 760px);
+    padding: 0 24px;
+    text-align: center;
+    transition: transform 0.7s ease, opacity 0.7s ease;
+  }
+
+  .fashion-intro__eyebrow,
+  .fashion-intro__subtitle {
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-size: 10px;
+    color: rgba(247, 241, 232, 0.72);
+    overflow: hidden;
+  }
+
+  .fashion-intro__eyebrow span,
+  .fashion-intro__subtitle span {
+    display: inline-block;
+    transform: translateY(120%);
+    opacity: 0;
+    animation: introRise 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .fashion-intro__eyebrow span { animation-delay: 0.12s; }
+  .fashion-intro__subtitle span { animation-delay: 0.42s; }
+
+  .fashion-intro__wordmark {
+    display: grid;
+    gap: 8px;
+    margin: 26px 0 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(58px, 13vw, 118px);
+    line-height: 0.84;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .fashion-intro__wordmark span {
+    display: block;
+    overflow: hidden;
+  }
+
+  .fashion-intro__wordmark i {
+    display: block;
+    font-style: normal;
+    transform: translateY(120%);
+    opacity: 0;
+    animation: introRise 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .fashion-intro__wordmark span:first-child i { animation-delay: 0.18s; }
+  .fashion-intro__wordmark span:last-child i { animation-delay: 0.28s; }
+
+  .fashion-intro__rule {
+    width: min(420px, 72vw);
+    height: 1px;
+    margin: 24px auto 20px;
+    transform: scaleX(0);
+    transform-origin: center;
+    background: linear-gradient(90deg, transparent, rgba(247, 241, 232, 0.84), transparent);
+    animation: introRule 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.34s forwards;
+  }
+
+  .fashion-intro.is-complete .fashion-intro__curtain--left {
+    transform: translateX(-103%);
+  }
+
+  .fashion-intro.is-complete .fashion-intro__curtain--right {
+    transform: translateX(103%);
+  }
+
+  .fashion-intro.is-complete .fashion-intro__content {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  @keyframes introRise {
+    from {
+      opacity: 0;
+      transform: translateY(120%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes introRule {
+    from { transform: scaleX(0); opacity: 0; }
+    to { transform: scaleX(1); opacity: 1; }
   }
 
   .marquee-wrap {
@@ -1168,6 +1315,9 @@
   }
 
   @media (max-width: 760px) {
+    .fashion-intro__eyebrow,
+    .fashion-intro__subtitle { letter-spacing: 0.28em; }
+    .fashion-intro__wordmark { gap: 4px; }
     .logo-text { font-size: 16px; letter-spacing: 0.18em; }
     .hero { padding-top: 52px; }
     .hero h1 { font-size: clamp(50px, 18vw, 76px); }
@@ -1201,7 +1351,20 @@
   }
 </style>
 </head>
-<body>
+<body class="is-loading">
+<div class="fashion-intro" aria-hidden="true">
+  <div class="fashion-intro__curtain fashion-intro__curtain--left"></div>
+  <div class="fashion-intro__curtain fashion-intro__curtain--right"></div>
+  <div class="fashion-intro__content">
+    <p class="fashion-intro__eyebrow"><span>Maison edit 2026</span></p>
+    <div class="fashion-intro__wordmark">
+      <span><i>Closet</i></span>
+      <span><i>Da Nil</i></span>
+    </div>
+    <div class="fashion-intro__rule"></div>
+    <p class="fashion-intro__subtitle"><span>Presenca que veste status</span></p>
+  </div>
+</div>
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span>Curadoria com presenca</span><span class="dot">◆</span>
@@ -1455,6 +1618,15 @@
   const navMenuBtn = document.querySelector('.nav-menu-btn');
   const dropdown = document.getElementById('dropdown-carrinho');
   const modal = document.getElementById('productModal');
+  const intro = document.querySelector('.fashion-intro');
+  const shouldReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let introSeen = false;
+
+  try {
+    introSeen = sessionStorage.getItem('closet-intro-seen') === '1';
+  } catch (error) {
+    introSeen = false;
+  }
 
   function valorNumerico(preco) {
     return Number(preco.replace('R$', '').replace(/\./g, '').replace(',', '.').trim());
@@ -1574,6 +1746,37 @@
     alert('Peca salva como inspiracao.');
   }
 
+  function finalizarIntro(skip = false) {
+    if (!intro) {
+      document.body.classList.remove('is-loading');
+      return;
+    }
+
+    intro.classList.add(skip ? 'is-skipped' : 'is-complete');
+
+    setTimeout(() => {
+      document.body.classList.remove('is-loading');
+    }, skip ? 0 : 760);
+  }
+
+  function iniciarIntro() {
+    if (!intro) return;
+
+    if (shouldReduceMotion || introSeen) {
+      finalizarIntro(true);
+      return;
+    }
+
+    window.setTimeout(() => {
+      finalizarIntro(false);
+      try {
+        sessionStorage.setItem('closet-intro-seen', '1');
+      } catch (error) {
+        /* no-op: local preview can block storage */
+      }
+    }, 1850);
+  }
+
   navMenuBtn.addEventListener('click', () => {
     const aberto = nav.classList.toggle('is-open');
     navMenuBtn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
@@ -1611,6 +1814,7 @@
 
   revealEls.forEach((element) => observer.observe(element));
   atualizarCarrinho();
+  iniciarIntro();
 </script>
 </body>
 </html>
