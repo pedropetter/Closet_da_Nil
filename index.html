@@ -1,166 +1,1616 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <header class="top-bar">
-  <img src="closet.jpg" alt="Logo da Loja Rosê" class="logo">
-</header>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loja Rosê</title>
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    let carrinho = [];
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Closet Da Nil | Moda feminina com presenca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #f7f1e8;
+    --ivory-strong: #eee2d1;
+    --champagne: #d7bf9d;
+    --bronze: #9b7650;
+    --bronze-soft: rgba(155, 118, 80, 0.14);
+    --ink: #17120e;
+    --muted: #6b6157;
+    --line: rgba(23, 18, 14, 0.12);
+    --shadow: 0 24px 64px rgba(37, 26, 17, 0.14);
+    --shadow-soft: 0 16px 40px rgba(37, 26, 17, 0.08);
+    --nav-h: 92px;
+  }
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    function adicionarAoCarrinho(nome) {
-      carrinho.push(nome);
-      atualizarCarrinho();
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+  }
+
+  body {
+    min-height: 100vh;
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(215, 191, 157, 0.3), transparent 32%),
+      linear-gradient(180deg, #fbf7f1 0%, #f4ece0 48%, #f8f1e7 100%);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px);
+    background-size: 120px 120px;
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: -2;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    top: -220px;
+    right: -180px;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(155, 118, 80, 0.16) 0%, rgba(155, 118, 80, 0) 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button {
+    font: inherit;
+  }
+
+  .marquee-wrap {
+    overflow: hidden;
+    padding: 15px 0;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(155, 118, 80, 0.16), rgba(255, 255, 255, 0.03)),
+      #120f0c;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-block;
+    animation: marquee 32s linear infinite;
+  }
+
+  .marquee-track span {
+    margin: 0 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.34em;
+    font-size: 10px;
+    color: rgba(247, 241, 232, 0.76);
+  }
+
+  .marquee-track .dot {
+    margin: 0 10px;
+    color: rgba(215, 191, 157, 0.5);
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: var(--nav-h);
+    padding: 18px 70px;
+    backdrop-filter: blur(18px);
+    background: rgba(251, 247, 241, 0.75);
+    border-bottom: 1px solid rgba(23, 18, 14, 0.08);
+    box-shadow: 0 16px 40px rgba(37, 26, 17, 0.08);
+  }
+
+  .nav-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-decoration: none;
+  }
+
+  .logo-img {
+    width: 58px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 1px solid rgba(155, 118, 80, 0.28);
+    box-shadow: 0 10px 24px rgba(37, 26, 17, 0.12);
+  }
+
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.22em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 10px;
+    color: rgba(23, 18, 14, 0.72);
+  }
+
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -9px;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(90deg, transparent, var(--bronze), transparent);
+    transition: transform 0.35s ease;
+  }
+
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .nav-menu-btn {
+    display: none;
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .cart-wrapper {
+    position: relative;
+  }
+
+  .cart-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border: 1px solid rgba(23, 18, 14, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 9px;
+    cursor: pointer;
+  }
+
+  .cart-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--bronze), #7b5a3b);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 14px);
+    width: min(420px, 92vw);
+    max-height: 72vh;
+    overflow-y: auto;
+    padding: 26px;
+    list-style: none;
+    border-radius: 28px;
+    border: 1px solid rgba(155, 118, 80, 0.22);
+    background: rgba(255, 252, 247, 0.97);
+    box-shadow: var(--shadow);
+  }
+
+  .dropdown-title {
+    display: block;
+    padding-bottom: 18px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(23, 18, 14, 0.08);
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .dropdown li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 10px 0;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(155, 118, 80, 0.08);
+  }
+
+  .mini-img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 14px;
+  }
+
+  .item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .item-info span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 0.95;
+  }
+
+  .item-info small {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .remove-button {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .cart-total {
+    margin-top: 12px;
+    margin-bottom: 10px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(23, 18, 14, 0.08);
+    justify-content: space-between;
+    background: transparent;
+  }
+
+  .cart-total strong {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 10px;
+  }
+
+  .finalizar-btn {
+    width: 100%;
+    margin-top: 8px;
+    border: none;
+    border-radius: 999px;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--ink), #2c2118);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .hero {
+    padding: 78px 70px 42px;
+  }
+
+  .hero-grid {
+    max-width: 1380px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+    gap: 54px;
+    align-items: center;
+  }
+
+  .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(155, 118, 80, 0.18);
+    background: rgba(255, 255, 255, 0.62);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 10px;
+  }
+
+  .hero-kicker::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: rgba(155, 118, 80, 0.7);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 9vw, 112px);
+    line-height: 0.94;
+    letter-spacing: -0.04em;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--bronze);
+  }
+
+  .hero p {
+    max-width: 600px;
+    margin-bottom: 32px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.95;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .btn-hero,
+  .btn-hero-secondary,
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 210px;
+    padding: 18px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .btn-hero {
+    background: linear-gradient(135deg, var(--ink), #2d231a);
+    color: white;
+    box-shadow: 0 16px 32px rgba(23, 18, 14, 0.18);
+  }
+
+  .btn-hero-secondary {
+    border: 1px solid rgba(23, 18, 14, 0.14);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--ink);
+  }
+
+  .hero-signature {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .hero-visual {
+    position: relative;
+    min-height: 720px;
+  }
+
+  .hero-frame {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 34px;
+    border: 1px solid rgba(155, 118, 80, 0.18);
+    box-shadow: var(--shadow);
+    background: #eadfce;
+  }
+
+  .hero-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-frame-main {
+    inset: 0 70px 64px 0;
+  }
+
+  .hero-frame-accent {
+    right: 0;
+    bottom: 0;
+    width: 270px;
+    height: 330px;
+  }
+
+  .hero-note {
+    position: absolute;
+    left: 28px;
+    bottom: 26px;
+    max-width: 260px;
+    padding: 22px;
+    border-radius: 24px;
+    border: 1px solid rgba(155, 118, 80, 0.16);
+    background: rgba(255, 249, 242, 0.9);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hero-note-label {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .hero-note strong {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    line-height: 0.95;
+  }
+
+  .hero-note p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .house-strip,
+  .panels-section,
+  .products-section,
+  footer {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  .house-strip {
+    padding-bottom: 38px;
+  }
+
+  .house-grid {
+    max-width: 1380px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .house-card {
+    padding: 28px;
+    border-radius: 30px;
+    border: 1px solid rgba(155, 118, 80, 0.16);
+    background: rgba(255, 252, 247, 0.8);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .house-card span {
+    display: block;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    font-size: 10px;
+    color: var(--bronze);
+  }
+
+  .house-card h3 {
+    margin-bottom: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    line-height: 0.96;
+  }
+
+  .house-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .section-intro,
+  .products-heading,
+  .brand-banner,
+  .footer-grid,
+  .footer-bottom,
+  .panels-grid,
+  .container {
+    max-width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-intro {
+    margin-bottom: 24px;
+    padding: 46px 48px;
+    border-radius: 36px;
+    border: 1px solid rgba(155, 118, 80, 0.16);
+    background: linear-gradient(135deg, rgba(255, 252, 247, 0.92), rgba(238, 226, 209, 0.72));
+  }
+
+  .section-label {
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 10px;
+    color: var(--bronze);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(46px, 6vw, 72px);
+    line-height: 0.96;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--bronze);
+  }
+
+  .section-copy,
+  .products-intro {
+    max-width: 540px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .panels-section {
+    padding-top: 24px;
+  }
+
+  .panels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .panel-item {
+    position: relative;
+    min-height: 520px;
+    overflow: hidden;
+    border-radius: 34px;
+    border: 1px solid rgba(155, 118, 80, 0.16);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+  }
+
+  .panel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+
+  .panel-item:hover .panel-image {
+    transform: scale(1.05);
+  }
+
+  .panel-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 42px;
+    background: linear-gradient(180deg, rgba(18, 15, 12, 0.08) 0%, rgba(18, 15, 12, 0.78) 100%);
+  }
+
+  .panel-tag,
+  .panel-cta {
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .panel-title {
+    margin: 12px 0 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    line-height: 0.96;
+    color: white;
+  }
+
+  .products-section {
+    padding-top: 106px;
+    padding-bottom: 100px;
+  }
+
+  .products-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 28px;
+    align-items: end;
+    margin-bottom: 46px;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .block {
+    overflow: hidden;
+    border-radius: 30px;
+    border: 1px solid rgba(155, 118, 80, 0.14);
+    background: rgba(255, 252, 247, 0.84);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .img-wrap {
+    position: relative;
+    margin: 12px;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 0.78;
+    background: #ecdfce;
+  }
+
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .wishlist-float {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(155, 118, 80, 0.18);
+    background: rgba(255, 255, 255, 0.74);
+    font-size: 18px;
+  }
+
+  .block-info {
+    padding: 8px 24px 26px;
+  }
+
+  .block-category {
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 8px;
+    color: var(--bronze);
+  }
+
+  .block p {
+    margin-bottom: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    line-height: 0.98;
+    cursor: pointer;
+  }
+
+  .preco {
+    display: inline-flex;
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--bronze-soft);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .buy-button {
+    width: 100%;
+    border: none;
+    border-radius: 999px;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--ink), #2d231a);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 9px;
+    cursor: pointer;
+  }
+
+  .brand-banner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 88px;
+    padding: 56px;
+    border-radius: 40px;
+    border: 1px solid rgba(215, 191, 157, 0.14);
+    background:
+      radial-gradient(circle at top right, rgba(215, 191, 157, 0.18), transparent 34%),
+      linear-gradient(135deg, #16110d 0%, #231912 56%, #2d2016 100%);
+  }
+
+  .brand-text .section-label {
+    color: rgba(247, 241, 232, 0.6);
+  }
+
+  .brand-text .section-title {
+    color: white;
+    margin-bottom: 22px;
+  }
+
+  .brand-text p {
+    max-width: 560px;
+    margin-bottom: 34px;
+    color: rgba(247, 241, 232, 0.72);
+    font-size: 15px;
+    line-height: 1.92;
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(247, 241, 232, 0.34);
+    background: rgba(255, 255, 255, 0.03);
+    color: white;
+  }
+
+  .brand-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .stat-card {
+    padding: 28px 24px;
+    border-radius: 26px;
+    border: 1px solid rgba(247, 241, 232, 0.1);
+    background: rgba(255, 249, 242, 0.06);
+  }
+
+  .stat-num {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 54px;
+    line-height: 0.95;
+    color: white;
+  }
+
+  .stat-label {
+    color: rgba(247, 241, 232, 0.68);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 10px;
+    line-height: 1.8;
+  }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 26px;
+    background: rgba(14, 10, 8, 0.64);
+    z-index: 50;
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    position: relative;
+    width: min(1120px, 100%);
+    display: grid;
+    grid-template-columns: minmax(320px, 0.95fr) minmax(0, 1fr);
+    gap: 34px;
+    padding: 28px;
+    border-radius: 36px;
+    border: 1px solid rgba(155, 118, 80, 0.18);
+    background: rgba(255, 251, 246, 0.98);
+    box-shadow: var(--shadow);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(23, 18, 14, 0.06);
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .modal-image-container {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #ecdfce;
+  }
+
+  .modal-image {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    object-fit: cover;
+  }
+
+  .modal-image-counter {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 249, 242, 0.82);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 10px;
+  }
+
+  .modal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .modal-category {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 10px;
+    color: var(--bronze);
+  }
+
+  .modal-title {
+    margin-bottom: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 0.94;
+  }
+
+  .modal-price {
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .modal-description {
+    margin-bottom: 24px;
+  }
+
+  .modal-description-title {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .modal-description p {
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .modal-details {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(23, 18, 14, 0.08);
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .detail-row strong {
+    color: var(--ink);
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 14px;
+  }
+
+  .modal-add-btn,
+  .modal-wishlist-btn {
+    flex: 1;
+    border: none;
+    border-radius: 999px;
+    padding: 16px 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .modal-add-btn {
+    background: linear-gradient(135deg, var(--ink), #2d231a);
+    color: white;
+  }
+
+  .modal-wishlist-btn {
+    background: rgba(155, 118, 80, 0.08);
+    color: var(--ink);
+    border: 1px solid rgba(23, 18, 14, 0.1);
+  }
+
+  .whatsapp-floating {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ink), #2c2118);
+    color: white;
+    box-shadow: 0 18px 32px rgba(23, 18, 14, 0.22);
+    cursor: pointer;
+  }
+
+  .whatsapp-floating svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .whatsapp-tooltip {
+    position: absolute;
+    right: 76px;
+    white-space: nowrap;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(23, 18, 14, 0.92);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 9px;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .whatsapp-floating:hover .whatsapp-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  footer {
+    padding-top: 92px;
+    padding-bottom: 42px;
+    background:
+      radial-gradient(circle at top right, rgba(215, 191, 157, 0.14), transparent 24%),
+      linear-gradient(180deg, #0f0c09 0%, #17120f 100%);
+    color: white;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .logo-f {
+    display: block;
+    margin-bottom: 18px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    letter-spacing: 0.22em;
+  }
+
+  .footer-brand p {
+    max-width: 360px;
+    color: rgba(247, 241, 232, 0.62);
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    font-size: 10px;
+    color: rgba(247, 241, 232, 0.48);
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col li + li {
+    margin-top: 12px;
+  }
+
+  .footer-col a,
+  .footer-socials a,
+  .footer-bottom span {
+    text-decoration: none;
+    color: rgba(247, 241, 232, 0.62);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-top: 28px;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 1100px) {
+    nav,
+    .hero,
+    .house-strip,
+    .panels-section,
+    .products-section,
+    footer {
+      padding-left: 24px;
+      padding-right: 24px;
     }
 
-    function atualizarCarrinho() {
-      const lista = document.getElementById("lista-carrinho");
-      lista.innerHTML = "";
-      carrinho.forEach(item => {
-        const li = document.createElement("li");
-        li.innerText = item;
-        lista.appendChild(li);
-      });
-
-      const link = document.getElementById("finalizar-compra");
-      const texto = encodeURIComponent("Olá!Quero finalizar a compra dos seguintes Produtos: " + carrinho.join(", "));
-      link.href = "https://wa.me/5563992887772?text=" + texto;
+    nav {
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    function trocarImagemVestidoTania(cor) {
-      const imagem = document.getElementById("imagem-tania");
-      if (cor === 'preto') {
-        imagem.setAttribute('src', 'vestido-tania-preto.jpg');
-        imagem.setAttribute('alt', 'Vestido Tânia Preto');
-      } else if (cor === 'marrom') {
-        imagem.setAttribute('src', 'vestido-tania-marrom.jpg');
-        imagem.setAttribute('alt', 'Vestido Tânia Marrom');
-      }
+    .nav-menu-btn {
+      display: inline-block;
+      order: 2;
     }
-  </script>
+
+    .cart-wrapper {
+      margin-left: auto;
+      order: 3;
+    }
+
+    .nav-links {
+      order: 4;
+      width: 100%;
+      display: grid;
+      gap: 14px;
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    nav.is-open .nav-links {
+      max-height: 260px;
+      padding: 12px 0 4px;
+    }
+
+    .hero-grid,
+    .products-heading,
+    .brand-banner,
+    .modal-content {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+      min-height: 620px;
+    }
+
+    .hero-frame-main {
+      inset: 0 44px 50px 0;
+    }
+
+    .house-grid,
+    .brand-stats,
+    .container {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .logo-text { font-size: 16px; letter-spacing: 0.18em; }
+    .hero { padding-top: 52px; }
+    .hero h1 { font-size: clamp(50px, 18vw, 76px); }
+    .hero-actions,
+    .hero-signature,
+    .modal-actions,
+    .footer-bottom,
+    .footer-socials { flex-direction: column; align-items: flex-start; }
+    .btn-hero,
+    .btn-hero-secondary,
+    .btn-outline,
+    .modal-add-btn,
+    .modal-wishlist-btn { width: 100%; }
+    .hero-visual { min-height: 520px; }
+    .hero-frame-main { inset: 0 20px 40px 0; }
+    .hero-frame-accent { width: 180px; height: 220px; }
+    .hero-note { left: 16px; right: 16px; max-width: none; }
+    .house-grid,
+    .panels-grid,
+    .container,
+    .brand-stats,
+    .footer-grid { grid-template-columns: 1fr; }
+    .section-intro,
+    .brand-banner,
+    .modal-content { padding: 24px; }
+    .panel-item { min-height: 420px; }
+    .panel-title,
+    .block p { font-size: 36px; }
+    .whatsapp-floating { right: 18px; bottom: 18px; width: 58px; height: 58px; }
+    .whatsapp-tooltip { display: none; }
+  }
+</style>
 </head>
 <body>
-  <header class="top-bar">
-    <h1>Closet Da Nil💕 </h1>
-  </header>
-
-  <div class="section">
-    <h2>🛍️ Nossos Produtos✨</h2>
-    <div class="container">
-
-      <div class="block">
-        <img src="vestido pétala.jpg" alt="Vestido Pétala" class="block-image">
-        <p>Vestido Pétala</p>
-        <span class="preco">R$ 99,90</span>
-        <button onclick="adicionarAoCarrinho('Vestido Pétala')" class="buy-button">Adicionar ao carrinho</button><br>
-        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Pétala." target="_blank">Comprar</a>
-      </div>
-
-      <div class="block">
-        <img src="vestido afrodite.jpg" alt="Vestido Afrodite" class="block-image">
-        <p>Vestido Afrodite</p>
-        <span class="preco">R$ 109,90</span>
-        <button onclick="adicionarAoCarrinho('Vestido Afrodite')" class="buy-button">Adicionar ao carrinho</button><br>
-        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Afrodite." target="_blank">Comprar</a>
-      </div>
-
-      <div class="block">
-        <img src="vestido flor.jpg" alt="Vestido Flor" class="block-image">
-        <p>Vestido Flor</p>
-        <span class="preco">R$ 89,90</span>
-        <button onclick="adicionarAoCarrinho('Vestido Flor')" class="buy-button">Adicionar ao carrinho</button><br>
-        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Flor." target="_blank">Comprar</a>
-      </div>
-
-      <div class="block">
-        <img src="vestido-tania-preto.jpg" alt="Vestido Tânia Preto" id="imagem-tania" class="block-image">
-        <p>Vestido Tânia</p>
-        <span class="preco">R$ 129,90</span>
-        <div class="opcoes-cor">
-          <label><input type="radio" name="cor-tania" value="preto" checked onclick="trocarImagemVestidoTania('preto')"> Preto</label>
-          <label><input type="radio" name="cor-tania" value="marrom" onclick="trocarImagemVestidoTania('marrom')"> Marrom</label>
-        </div>
-        <button onclick="adicionarAoCarrinho('Vestido Tânia')" class="buy-button">Adicionar ao carrinho</button><br>
-        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Tânia. Qual cor está disponível?" target="_blank">Comprar</a>
-      </div>
-
-      <div class="block">
-        <img src="conjunto luma.jpg" alt="Conjunto Luma" class="block-image">
-        <p>Conjunto Luma</p>
-        <span class="preco">R$ 119,90</span>
-        <button onclick="adicionarAoCarrinho('Conjunto Luma')" class="buy-button">Adicionar ao carrinho</button><br>
-        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Conjunto Luma." target="_blank">Comprar</a>
-      </div>
-
-      <div class="block">
-        <img src="vestido vitrine.jpg" alt="Vestido Vitrine" class="block-image">
-        <p>Vestido Vitrine</p>
-        <span class="preco">R$ 99,90</span>
-        <button onclick="adicionarAoCarrinho('Vestido Vitrine')" class="buy-button">Adicionar ao carrinho</button><br>
-        <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Vitrine." target="_blank">Comprar</a>
-      </div>
-
-      <div class="block">
-  <img src="conjunto love.jpg" alt="Conjunto Só Love" class="block-image">
-  <p>Conjunto Só Love</p>
-  <span class="preco">R$ 109,90</span>
-  <button onclick="adicionarAoCarrinho('Conjunto Só Love')" class="buy-button">Adicionar ao carrinho</button><br>
-  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Conjunto Só Love." target="_blank">Comprar</a>
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Curadoria com presenca</span><span class="dot">◆</span>
+    <span>Atendimento direto pelo WhatsApp</span><span class="dot">◆</span>
+    <span>Frete gratis acima de R$ 200</span><span class="dot">◆</span>
+    <span>Closet Da Nil</span><span class="dot">◆</span>
+    <span>Dianopolis - TO</span><span class="dot">◆</span>
+    <span>Pecas para ocasioes memoraveis</span><span class="dot">◆</span>
+    <span>Curadoria com presenca</span><span class="dot">◆</span>
+    <span>Atendimento direto pelo WhatsApp</span><span class="dot">◆</span>
+    <span>Frete gratis acima de R$ 200</span><span class="dot">◆</span>
+    <span>Closet Da Nil</span><span class="dot">◆</span>
+    <span>Dianopolis - TO</span><span class="dot">◆</span>
+    <span>Pecas para ocasioes memoraveis</span><span class="dot">◆</span>
+  </div>
 </div>
 
-<div class="block">
-  <img src="vestido doroty.jpg" alt="Vestido Doroty" class="block-image">
-  <p>Vestido Doroty</p>
-  <span class="preco">R$ 119,90</span>
-  <button onclick="adicionarAoCarrinho('Vestido Doroty')" class="buy-button">Adicionar ao carrinho</button><br>
-  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Doroty." target="_blank">Comprar</a>
-</div>
+<nav id="topo">
+  <a href="#topo" class="nav-logo-wrap" aria-label="Voltar ao topo">
+    <img src="closet.jpg" alt="Logo Closet Da Nil" class="logo-img">
+    <span class="logo-text">CLOSET DA NIL</span>
+  </a>
 
-<div class="block">
-  <img src="conjunto saron.jpg" alt="Conjunto Saron" class="block-image">
-  <p>Conjunto Saron</p>
-  <span class="preco">R$ 99,90</span>
-  <button onclick="adicionarAoCarrinho('Conjunto Saron')" class="buy-button">Adicionar ao carrinho</button><br>
-  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Conjunto Saron." target="_blank">Comprar</a>
-</div>
+  <button class="nav-menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false">
+    <span></span>
+  </button>
 
-<div class="block">
-  <img src="vestido india.jpg" alt="Vestido Índia" class="block-image">
-  <p>Vestido Índia</p>
-  <span class="preco">R$ 139,90</span>
-  <button onclick="adicionarAoCarrinho('Vestido Índia')" class="buy-button">Adicionar ao carrinho</button><br>
-  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Vestido Índia." target="_blank">Comprar</a>
-</div>
+  <ul class="nav-links">
+    <li><a href="#colecao">Colecao</a></li>
+    <li><a href="#destaques">Destaques</a></li>
+    <li><a href="#sobre">Closet</a></li>
+    <li><a href="https://instagram.com/_closetdanil/" target="_blank" rel="noreferrer">Instagram</a></li>
+    <li><a href="https://wa.me/5563992887772" target="_blank" rel="noreferrer">Contato</a></li>
+  </ul>
 
-<div class="block">
-  <img src="conjunto tip.jpg" alt="Conjunto Tip" class="block-image">
-  <p>Conjunto Tip</p>
-  <span class="preco">R$ 89,90</span>
-  <button onclick="adicionarAoCarrinho('Conjunto Tip')" class="buy-button">Adicionar ao carrinho</button><br>
-  <a class="buy-button" href="https://wa.me/5563992887772?text=Olá! Quero comprar o Conjunto Tip." target="_blank">Comprar</a>
-</div>
+  <div class="cart-wrapper">
+    <button class="cart-btn" type="button" onclick="toggleCarrinho()" aria-label="Abrir sacola">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span>Sacola</span>
+      <span id="carrinho-count" class="badge">0</span>
+    </button>
+    <ul id="dropdown-carrinho" class="dropdown"></ul>
+  </div>
+</nav>
 
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy reveal">
+      <div class="hero-kicker">Curadoria para quem entra e eleva o ambiente</div>
+      <h1>Presença que se nota antes da <em>primeira palavra</em>.</h1>
+      <p>O Closet Da Nil reúne vestidos, conjuntos e peças de impacto com leitura mais nobre: caimento elegante, imagem refinada e uma seleção pensada para mulheres que gostam de vestir status sem exagero.</p>
+      <div class="hero-actions">
+        <a href="#colecao" class="btn-hero">Explorar coleção</a>
+        <a href="https://wa.me/5563992887772" target="_blank" rel="noreferrer" class="btn-hero-secondary">Atendimento privado</a>
+      </div>
+      <div class="hero-signature">
+        <span>Dianópolis - TO</span>
+        <span>Seleção enxuta</span>
+        <span>Atendimento pelo WhatsApp</span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="hero-frame hero-frame-main">
+        <img src="body elegante.jpg" alt="Look elegante da colecao Closet Da Nil">
+      </div>
+      <div class="hero-frame hero-frame-accent">
+        <img src="vestido-tania-preto.jpg" alt="Vestido preto sofisticado">
+      </div>
+      <div class="hero-note">
+        <div class="hero-note-label">Assinatura da casa</div>
+        <strong>Imagem impecável</strong>
+        <p>Peças para eventos, encontros e aparições em que a roupa precisa comunicar patamar.</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="section">
-    <h2>🛒 Carrinho de Compras</h2>
-    <ul id="lista-carrinho" style="list-style: none; padding: 0; margin-bottom: 20px;"></ul>
-    <a id="finalizar-compra" class="buy-button" href="#" target="_blank">Finalizar Compra</a>
+<section class="house-strip">
+  <div class="house-grid">
+    <article class="house-card reveal">
+      <span>01</span>
+      <h3>Curadoria com intenção</h3>
+      <p>Nada de vitrine poluída. Só entram peças com leitura sofisticada, feminilidade segura e presença real.</p>
+    </article>
+    <article class="house-card reveal">
+      <span>02</span>
+      <h3>Atendimento direto</h3>
+      <p>Você conversa com a loja sem ruído, com agilidade para escolher, reservar e finalizar pelo WhatsApp.</p>
+    </article>
+    <article class="house-card reveal">
+      <span>03</span>
+      <h3>Estilo de alta roda</h3>
+      <p>Uma estética mais limpa, mais cara e mais memorável para quem quer ser percebida pelo bom gosto.</p>
+    </article>
+  </div>
+</section>
+
+<section class="panels-section" id="destaques">
+  <div class="section-intro reveal">
+    <div class="section-label">Seleção em evidência</div>
+    <div class="section-title">Peças com <em>leitura de luxo</em></div>
+    <p class="section-copy">A vitrine foi reorganizada para transmitir exclusividade: imagens mais fortes, textos mais editoriais e uma composição que remete a boutique, não a catálogo comum.</p>
   </div>
 
-  <footer class="footer">
-    <p>Entre em contato:</p>
-    <p>
-      📱 <a href="https://wa.me/5563992887772" target="_blank">WhatsApp</a> |
-      📸 <a href="https://instagram.com/_closetdanil/" target="_blank">Instagram</a>
-    </p>
-    <p>📍 Dianópolis - TO</p>
-    <p>&copy; 2025 Closet Da Nil✨</p>
-  </footer>
+  <div class="panels-grid">
+    <a href="#colecao" class="panel-item reveal">
+      <img src="vestido flor.jpg" alt="Vestidos de presenca" class="panel-image">
+      <div class="panel-content">
+        <div class="panel-tag">Vestidos</div>
+        <div class="panel-title">Entrada<br>marcante</div>
+        <div class="panel-cta">Ver selecao</div>
+      </div>
+    </a>
+
+    <a href="#colecao" class="panel-item reveal">
+      <img src="conjunto luma.jpg" alt="Conjuntos sofisticados" class="panel-image">
+      <div class="panel-content">
+        <div class="panel-tag">Conjuntos</div>
+      <div class="panel-title">Sofisticação<br>completa</div>
+        <div class="panel-cta">Explorar agora</div>
+      </div>
+    </a>
+
+    <a href="#colecao" class="panel-item reveal">
+      <img src="Blusa assimetrica com gola.jpg" alt="Blusas de corte elegante" class="panel-image">
+      <div class="panel-content">
+        <div class="panel-tag">Blusas</div>
+        <div class="panel-title">Recorte<br>inteligente</div>
+        <div class="panel-cta">Conhecer peças</div>
+      </div>
+    </a>
+
+    <a href="#colecao" class="panel-item reveal">
+      <img src="body elegante.jpg" alt="Bodies com assinatura refinada" class="panel-image">
+      <div class="panel-content">
+        <div class="panel-tag">Bodies</div>
+        <div class="panel-title">Firmeza<br>feminina</div>
+        <div class="panel-cta">Descobrir edicao</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="products-section" id="colecao">
+  <div class="products-heading">
+    <div class="reveal">
+      <div class="section-label">Coleção atual</div>
+      <div class="section-title">Uma vitrine feita para parecer <em>do seu nível</em></div>
+    </div>
+    <p class="products-intro reveal">Os cards ganharam acabamento mais nobre e uma hierarquia visual mais confiante para valorizar cada peça como item de desejo, não só como produto em promoção.</p>
+  </div>
+
+  <div class="container">
+    <div class="block reveal"><div class="img-wrap"><img src="vestido flor.jpg" alt="Vestido Flor" onclick="abrirModal('Vestido Flor')"><div class="wishlist-float" aria-hidden="true">♡</div></div><div class="block-info"><div class="block-category">Vestidos</div><p onclick="abrirModal('Vestido Flor')">Vestido Flor</p><span class="preco">R$ 149,99</span><button class="buy-button" type="button" onclick="adicionarAoCarrinho('Vestido Flor')">Reservar peca</button></div></div>
+    <div class="block reveal"><div class="img-wrap"><img src="conjunto luma.jpg" alt="Conjunto Luma" onclick="abrirModal('Conjunto Luma')"><div class="wishlist-float" aria-hidden="true">♡</div></div><div class="block-info"><div class="block-category">Conjuntos</div><p onclick="abrirModal('Conjunto Luma')">Conjunto Luma</p><span class="preco">R$ 119,99</span><button class="buy-button" type="button" onclick="adicionarAoCarrinho('Conjunto Luma')">Reservar peca</button></div></div>
+    <div class="block reveal"><div class="img-wrap"><img src="vestido vitrine.jpg" alt="Vestido Vitrine" onclick="abrirModal('Vestido Vitrine')"><div class="wishlist-float" aria-hidden="true">♡</div></div><div class="block-info"><div class="block-category">Vestidos</div><p onclick="abrirModal('Vestido Vitrine')">Vestido Vitrine</p><span class="preco">R$ 99,99</span><button class="buy-button" type="button" onclick="adicionarAoCarrinho('Vestido Vitrine')">Reservar peca</button></div></div>
+    <div class="block reveal"><div class="img-wrap"><img src="Blusa assimetrica com gola.jpg" alt="Blusa Assimetrica com Gola" onclick="abrirModal('Blusa Assimetrica com Gola')"><div class="wishlist-float" aria-hidden="true">♡</div></div><div class="block-info"><div class="block-category">Blusas</div><p onclick="abrirModal('Blusa Assimetrica com Gola')">Blusa Assimetrica com Gola</p><span class="preco">R$ 55,00</span><button class="buy-button" type="button" onclick="adicionarAoCarrinho('Blusa Assimetrica com Gola')">Reservar peca</button></div></div>
+    <div class="block reveal"><div class="img-wrap"><img src="blusa assimetrica.jpg" alt="Blusa Assimetrica" onclick="abrirModal('Blusa Assimetrica')"><div class="wishlist-float" aria-hidden="true">♡</div></div><div class="block-info"><div class="block-category">Blusas</div><p onclick="abrirModal('Blusa Assimetrica')">Blusa Assimetrica</p><span class="preco">R$ 50,00</span><button class="buy-button" type="button" onclick="adicionarAoCarrinho('Blusa Assimetrica')">Reservar peca</button></div></div>
+    <div class="block reveal"><div class="img-wrap"><img src="body lizz.jpg" alt="Body Lizz" onclick="abrirModal('Body Lizz')"><div class="wishlist-float" aria-hidden="true">♡</div></div><div class="block-info"><div class="block-category">Bodies</div><p onclick="abrirModal('Body Lizz')">Body Lizz</p><span class="preco">R$ 50,49</span><button class="buy-button" type="button" onclick="adicionarAoCarrinho('Body Lizz')">Reservar peca</button></div></div>
+    <div class="block reveal"><div class="img-wrap"><img src="body celine.jpg" alt="Body Celine" onclick="abrirModal('Body Celine')"><div class="wishlist-float" aria-hidden="true">♡</div></div><div class="block-info"><div class="block-category">Bodies</div><p onclick="abrirModal('Body Celine')">Body Celine</p><span class="preco">R$ 55,50</span><button class="buy-button" type="button" onclick="adicionarAoCarrinho('Body Celine')">Reservar peca</button></div></div>
+    <div class="block reveal"><div class="img-wrap"><img src="short alfaiataria.jpg" alt="Short Alfaiataria" onclick="abrirModal('Short Alfaiataria')"><div class="wishlist-float" aria-hidden="true">♡</div></div><div class="block-info"><div class="block-category">Shorts</div><p onclick="abrirModal('Short Alfaiataria')">Short Alfaiataria</p><span class="preco">R$ 75,50</span><button class="buy-button" type="button" onclick="adicionarAoCarrinho('Short Alfaiataria')">Reservar peca</button></div></div>
+  </div>
+</section>
+
+<section class="brand-banner" id="sobre">
+  <div class="brand-text reveal">
+    <div class="section-label">O Closet</div>
+    <div class="section-title">Moda com <em>postura</em> e propósito</div>
+    <p>O Closet Da Nil agora fala como uma marca de presença: estética limpa, ritmo visual de boutique e um discurso que sustenta desejo. O atendimento continua humano e próximo, mas a apresentação foi elevada para transmitir patamar desde a primeira dobra da página.</p>
+    <a href="https://wa.me/5563992887772" target="_blank" rel="noreferrer" class="btn-outline">Falar com a curadoria</a>
+  </div>
+  <div class="brand-stats reveal">
+    <div class="stat-card"><span class="stat-num">08</span><span class="stat-label">Peças em destaque nesta edição</span></div>
+    <div class="stat-card"><span class="stat-num">TO</span><span class="stat-label">Base em Dianópolis com atendimento direto</span></div>
+    <div class="stat-card"><span class="stat-num">R$ 200</span><span class="stat-label">Faixa que ativa frete grátis</span></div>
+    <div class="stat-card"><span class="stat-num">24h</span><span class="stat-label">Resposta pensada para converter rápido</span></div>
+  </div>
+</section>
+
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" type="button" onclick="fecharModal()">&times;</button>
+    <div class="modal-image-container">
+      <img id="modalImage" src="" alt="Produto" class="modal-image">
+      <div class="modal-image-counter">Seleção do Closet</div>
+    </div>
+    <div class="modal-info">
+      <div class="modal-category" id="modalCategory"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="modal-description"><div class="modal-description-title">Narrativa da peça</div><p id="modalDesc">Peça selecionada para compor uma imagem refinada, segura e feminina.</p></div>
+      <div class="modal-details">
+        <div class="detail-row"><strong>Categoria</strong><span id="detailCategory"></span></div>
+        <div class="detail-row"><strong>Leitura</strong><span id="detailStyle"></span></div>
+        <div class="detail-row"><strong>Material</strong><span id="detailMaterial"></span></div>
+        <div class="detail-row"><strong>Frete</strong><span>Grátis acima de R$ 200</span></div>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-add-btn" id="modalAddBtn" type="button" onclick="adicionarAoCarrinhoModal()">Adicionar à sacola</button>
+        <button class="modal-wishlist-btn" type="button" onclick="adicionarWishlist()">Salvar inspiração</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="whatsapp-floating" type="button" onclick="window.open('https://wa.me/5563992887772', '_blank')">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.427 0-2.834.356-4.06 1.031l-.291.162-.302-.052c-1.033-.181-1.975-.628-2.769-1.289l-.542-.468-.609.122c-.817.163-1.543.548-2.059 1.089-.41.414-.73.923-.945 1.485-.196.51-.309 1.077-.309 1.67 0 .897.191 1.759.55 2.55l.052.113-.086.134c-.655 1.017-1.019 2.208-1.019 3.479 0 3.59 2.918 6.5 6.5 6.5 1.271 0 2.462-.364 3.479-1.019l.134-.086.113.052c.791.359 1.653.55 2.55.55 3.59 0 6.5-2.91 6.5-6.5 0-1.271-.364-2.462-1.019-3.479l-.086-.134.052-.113c.359-.791.55-1.653.55-2.55 0-.593-.113-1.16-.309-1.67-.215-.562-.535-1.071-.945-1.485-.516-.541-1.242-.926-2.059-1.089l-.609-.122-.542.468c-.794.661-1.736 1.108-2.769 1.289l-.302.052-.291-.162c-1.226-.675-2.633-1.031-4.06-1.031"></path></svg>
+  <div class="whatsapp-tooltip">Atendimento imediato</div>
+</button>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-f">CLOSET DA NIL</span>
+      <p>Moda feminina com apresentação mais nobre, linguagem editorial e atendimento próximo para transformar cada visita em desejo de compra.</p>
+      <div class="footer-socials" style="margin-top: 34px;">
+        <a href="https://instagram.com/_closetdanil/" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://wa.me/5563992887772" target="_blank" rel="noreferrer">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Vitrine</h4><ul><li><a href="#colecao">Coleção</a></li><li><a href="#destaques">Destaques</a></li><li><a href="#sobre">Closet</a></li></ul></div>
+    <div class="footer-col"><h4>Contato</h4><ul><li><a href="https://wa.me/5563992887772" target="_blank" rel="noreferrer">WhatsApp</a></li><li><a href="https://instagram.com/_closetdanil/" target="_blank" rel="noreferrer">Instagram</a></li><li><a href="#topo">Voltar ao topo</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Closet Da Nil. Dianópolis - TO.</span>
+    <div class="footer-socials"><a href="https://instagram.com/_closetdanil/" target="_blank" rel="noreferrer">@_closetdanil</a></div>
+  </div>
+</footer>
+
+<script>
+  const produtos = {
+    'Vestido Flor': { categoria: 'Vestidos', preco: 'R$ 149,99', img: 'vestido flor.jpg', estilo: 'Entrada memoravel', material: 'Tecido fluido com presenca', descricao: 'Um vestido pensado para ocasioes em que a sua imagem precisa chegar antes da apresentacao. Feminino, elegante e com leitura social elevada.' },
+    'Conjunto Luma': { categoria: 'Conjuntos', preco: 'R$ 119,99', img: 'conjunto luma.jpg', estilo: 'Coordenacao sofisticada', material: 'Estrutura confortavel e refinada', descricao: 'Entrega praticidade sem perder imponencia. Ideal para quem quer um look completo, coeso e naturalmente elegante.' },
+    'Vestido Vitrine': { categoria: 'Vestidos', preco: 'R$ 99,99', img: 'vestido vitrine.jpg', estilo: 'Charme discreto', material: 'Tecido leve com caimento limpo', descricao: 'Uma peca com apelo imediato de vitrine, pensada para aparicoes delicadas e de bom gosto.' },
+    'Blusa Assimetrica com Gola': { categoria: 'Blusas', preco: 'R$ 55,00', img: 'Blusa assimetrica com gola.jpg', estilo: 'Recorte de assinatura', material: 'Malha premium de toque firme', descricao: 'A assimetria trabalha a favor da sofisticacao. Uma blusa que sai do basico e eleva o visual com pouco esforco.' },
+    'Blusa Assimetrica': { categoria: 'Blusas', preco: 'R$ 50,00', img: 'blusa assimetrica.jpg', estilo: 'Minimalismo elegante', material: 'Malha macia com otimo caimento', descricao: 'Perfeita para compor producoes mais limpas, com um detalhe de design que mostra intencao e repertorio visual.' },
+    'Body Lizz': { categoria: 'Bodies', preco: 'R$ 50,49', img: 'body lizz.jpg', estilo: 'Silhueta segura', material: 'Base ajustada de acabamento refinado', descricao: 'Modela com elegancia e sustenta uma imagem confiante. Funciona muito bem em composicoes de noite ou ocasioes especiais.' },
+    'Body Celine': { categoria: 'Bodies', preco: 'R$ 55,50', img: 'body celine.jpg', estilo: 'Feminilidade firme', material: 'Estrutura premium com toque macio', descricao: 'Um body que faz o papel de peca principal. Refinado, direto e com otima leitura de boutique.' },
+    'Short Alfaiataria': { categoria: 'Shorts', preco: 'R$ 75,50', img: 'short alfaiataria.jpg', estilo: 'Alfaiataria leve', material: 'Tecido encorpado com caimento preciso', descricao: 'Traz a linguagem da alfaiataria para um visual mais fresco, sem abrir mao de presenca e acabamento elegante.' }
+  };
+
+  let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+  let produtoAtualModal = '';
+
+  const nav = document.querySelector('nav');
+  const navMenuBtn = document.querySelector('.nav-menu-btn');
+  const dropdown = document.getElementById('dropdown-carrinho');
+  const modal = document.getElementById('productModal');
+
+  function valorNumerico(preco) {
+    return Number(preco.replace('R$', '').replace(/\./g, '').replace(',', '.').trim());
+  }
+
+  function moeda(valor) {
+    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function abrirModal(nome) {
+    const produto = produtos[nome];
+    if (!produto) return;
+    produtoAtualModal = nome;
+    document.getElementById('modalImage').src = produto.img;
+    document.getElementById('modalCategory').textContent = produto.categoria;
+    document.getElementById('modalTitle').textContent = nome;
+    document.getElementById('modalPrice').textContent = produto.preco;
+    document.getElementById('modalDesc').textContent = produto.descricao;
+    document.getElementById('detailCategory').textContent = produto.categoria;
+    document.getElementById('detailStyle').textContent = produto.estilo;
+    document.getElementById('detailMaterial').textContent = produto.material;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fecharModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function adicionarAoCarrinho(nome) {
+    if (!produtos[nome]) return;
+    carrinho.push(nome);
+    salvarCarrinho();
+    atualizarCarrinho();
+    dropdown.style.display = 'block';
+    setTimeout(() => {
+      if (dropdown.style.display === 'block') dropdown.style.display = 'none';
+    }, 2600);
+  }
+
+  function adicionarAoCarrinhoModal() {
+    adicionarAoCarrinho(produtoAtualModal);
+    fecharModal();
+  }
+
+  function removerDoCarrinho(index) {
+    carrinho.splice(index, 1);
+    salvarCarrinho();
+    atualizarCarrinho();
+  }
+
+  function salvarCarrinho() {
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  }
+
+  function atualizarCarrinho() {
+    dropdown.innerHTML = '';
+    const titulo = document.createElement('span');
+    titulo.className = 'dropdown-title';
+    titulo.textContent = 'Sua sacola';
+    dropdown.appendChild(titulo);
+    document.getElementById('carrinho-count').textContent = carrinho.length;
+    if (carrinho.length === 0) {
+      const vazio = document.createElement('li');
+      vazio.style.justifyContent = 'center';
+      vazio.style.textAlign = 'center';
+      vazio.style.color = 'var(--muted)';
+      vazio.style.background = 'transparent';
+      vazio.textContent = 'Sua sacola esta vazia.';
+      dropdown.appendChild(vazio);
+      return;
+    }
+
+    let total = 0;
+    carrinho.forEach((item, index) => {
+      const produto = produtos[item];
+      if (!produto) return;
+      total += valorNumerico(produto.preco);
+      const li = document.createElement('li');
+      li.innerHTML = `<img src=\"${produto.img}\" class=\"mini-img\" alt=\"${item}\"><div class=\"item-info\"><span>${item}</span><small>${produto.preco}</small></div><button class=\"remove-button\" type=\"button\" onclick=\"removerDoCarrinho(${index})\">Remover</button>`;
+      dropdown.appendChild(li);
+    });
+
+    const totalRow = document.createElement('li');
+    totalRow.className = 'cart-total';
+    totalRow.innerHTML = `<strong>Total</strong><strong>${moeda(total)}</strong>`;
+    dropdown.appendChild(totalRow);
+
+    const finalRow = document.createElement('li');
+    finalRow.style.background = 'transparent';
+    finalRow.style.padding = '0';
+    finalRow.innerHTML = '<button class=\"finalizar-btn\" type=\"button\" onclick=\"finalizarCarrinho()\">Finalizar no WhatsApp</button>';
+    dropdown.appendChild(finalRow);
+  }
+
+  function finalizarCarrinho() {
+    if (carrinho.length === 0) {
+      alert('Sua sacola esta vazia.');
+      return;
+    }
+    const itens = carrinho.map((nome) => `- ${nome} (${produtos[nome].preco})`).join('%0A');
+    const total = carrinho.reduce((acc, nome) => acc + valorNumerico(produtos[nome].preco), 0);
+    const texto = `Ola! Quero finalizar estas pecas:%0A%0A${itens}%0A%0ATotal estimado: ${encodeURIComponent(moeda(total))}`;
+    carrinho = [];
+    salvarCarrinho();
+    atualizarCarrinho();
+    dropdown.style.display = 'none';
+    window.open(`https://wa.me/5563992887772?text=${texto}`, '_blank');
+  }
+
+  function toggleCarrinho() {
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function adicionarWishlist() {
+    alert('Peca salva como inspiracao.');
+  }
+
+  navMenuBtn.addEventListener('click', () => {
+    const aberto = nav.classList.toggle('is-open');
+    navMenuBtn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      navMenuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.cart-wrapper')) dropdown.style.display = 'none';
+    if (event.target === modal) fecharModal();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      fecharModal();
+      nav.classList.remove('is-open');
+      navMenuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach((element) => observer.observe(element));
+  atualizarCarrinho();
+</script>
 </body>
 </html>
